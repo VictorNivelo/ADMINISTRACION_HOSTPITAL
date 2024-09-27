@@ -31,6 +31,7 @@ public class Utilidades extends Vista.frmUsuarioIngresarDatos {
         return false;
     }
 
+    @SuppressWarnings({ "rawtypes", "unchecked", "deprecation" })
     public static void cargarCombosFecha(JComboBox dia, JComboBox mes, JComboBox anio) {
         dia.removeAllItems();
         mes.removeAllItems();
@@ -48,6 +49,7 @@ public class Utilidades extends Vista.frmUsuarioIngresarDatos {
         }
     }
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static JComboBox cargarComboRoles(JComboBox cbx, Rol roles[]) {
         cbx.removeAllItems();
         for (Rol rol : roles) {

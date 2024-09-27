@@ -89,10 +89,11 @@ public class frmUsuarioSeleccionarFecha extends javax.swing.JFrame {
     txtFechaCita.setText("dd/mm/aaaa");
     txtFechaCita.addFocusListener(
       new java.awt.event.FocusAdapter() {
+        @Override
         public void focusGained(java.awt.event.FocusEvent evt) {
           txtFechaCitaFocusGained(evt);
         }
-
+        @Override
         public void focusLost(java.awt.event.FocusEvent evt) {
           txtFechaCitaFocusLost(evt);
         }
@@ -100,10 +101,12 @@ public class frmUsuarioSeleccionarFecha extends javax.swing.JFrame {
     );
     txtFechaCita.addKeyListener(
       new java.awt.event.KeyAdapter() {
+        @Override
         public void keyPressed(java.awt.event.KeyEvent evt) {
           txtFechaCitaKeyPressed(evt);
         }
 
+        @Override
         public void keyTyped(java.awt.event.KeyEvent evt) {
           txtFechaCitaKeyTyped(evt);
         }

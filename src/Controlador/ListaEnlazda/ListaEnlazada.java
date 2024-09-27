@@ -21,7 +21,8 @@ import java.util.function.Consumer;
  * @author Victor
  * @param <E>
  */
-public class ListaEnlazada<E> extends AbstractSequentialList<E> implements List<E>, java.io.Serializable {
+@SuppressWarnings("unused")
+public final class ListaEnlazada<E> extends AbstractSequentialList<E> implements List<E>, java.io.Serializable {
 
     private NodoLista<E> cabecera;
     private Integer size = 0;
@@ -64,6 +65,7 @@ public class ListaEnlazada<E> extends AbstractSequentialList<E> implements List<
         return numAleatorio;
     }
 
+    @SuppressWarnings("unchecked")
     public void llenarLista(Integer tamanio) {
         Object aux;
         for (int i = 0; i < tamanio; i++) {
@@ -161,6 +163,7 @@ public class ListaEnlazada<E> extends AbstractSequentialList<E> implements List<
         }
     }
 
+    @SuppressWarnings("unchecked")
     public E[] ComvertirEnArray() {
         E[] matriz = null;
         if (this.size > 0) {
@@ -176,12 +179,13 @@ public class ListaEnlazada<E> extends AbstractSequentialList<E> implements List<
 
     public ListaEnlazada<E> toList(E[] matriz) {
         this.vaciar();
-        for (int i = 0; i < matriz.length; i++) {
-            this.insertar(matriz[i]);
+        for (E matriz1 : matriz) {
+            this.insertar(matriz1);
         }
         return this;
     }
 
+    @SuppressWarnings("unchecked")
     public ListaEnlazada<E> QuickSort(String atributo, Integer tipoOrdenacion) {
         E[] arreglo = ComvertirEnArray();
         Class<E> clazz = null;
@@ -202,10 +206,11 @@ public class ListaEnlazada<E> extends AbstractSequentialList<E> implements List<
         pivote = arreglo[central];
         i = primero;
         j = ultimo;
+        @SuppressWarnings({ "unchecked", "rawtypes" })
         Class clazz = (Class<E>) cabecera.getDato().getClass();
         do {
             if (Utilidades_Generales.isString(clazz)) {
-                if (tipoOrdenacion == ascendente) {
+                if (Objects.equals(tipoOrdenacion, ascendente)) {
                     while (arreglo[i].toString().toLowerCase().compareTo(pivote.toString().toLowerCase()) < 0) {
                         i++;
                     }
@@ -232,7 +237,9 @@ public class ListaEnlazada<E> extends AbstractSequentialList<E> implements List<
         }
     }
 
+    @SuppressWarnings("unchecked")
     public void cambioDatoQuick(E[] arreglo, Integer i, Integer j) {
+        @SuppressWarnings({ "rawtypes" })
         Class clazz = arreglo[0].getClass();
         Object aux;
         if (Utilidades_Generales.isString(clazz)) {
@@ -242,7 +249,9 @@ public class ListaEnlazada<E> extends AbstractSequentialList<E> implements List<
         }
     }
 
+    @SuppressWarnings("unchecked")
     public void cambioObjectoQuick(E[] arreglo, Integer i, Integer j, Object auxI) {
+        @SuppressWarnings({ "rawtypes" })
         Class clazz = auxI.getClass();
         Object aux;
         if (Utilidades_Generales.isString(clazz)) {
@@ -260,6 +269,7 @@ public class ListaEnlazada<E> extends AbstractSequentialList<E> implements List<
         pivote = arreglo[central];
         i = primero;
         j = ultimo;
+        @SuppressWarnings({ "unchecked", "rawtypes" })
         Class clazz = (Class<E>) cabecera.getDato().getClass();
         Field field = Utilidades_Generales.ObtencionDeAtributo(clazz, atributo);
         if (field == null) {
@@ -284,6 +294,7 @@ public class ListaEnlazada<E> extends AbstractSequentialList<E> implements List<
         }
     }
 
+    @SuppressWarnings("unchecked")
     public ListaEnlazada<E> busquedaSecuencial(String atributo, Object dato) throws Exception {
         Class<E> clazz = null;
         ListaEnlazada<E> resultado = new ListaEnlazada<>();
@@ -294,6 +305,7 @@ public class ListaEnlazada<E> extends AbstractSequentialList<E> implements List<
         return resultado;
     }
 
+    @SuppressWarnings("unchecked")
     public ListaEnlazada<E> busquedaBinariaSecuencial(String atributo, Object dato) throws Exception {
         Class<E> clazz = null;
         ListaEnlazada<E> resultado = new ListaEnlazada<>();
@@ -306,6 +318,7 @@ public class ListaEnlazada<E> extends AbstractSequentialList<E> implements List<
         return resultado;
     }
 
+    @SuppressWarnings("rawtypes")
     private void compararObjetos(ListaEnlazada<E> resultado, E[] arreglo, Integer bajo, Integer alto, Integer central, Class clazz, String atributo, Object dato, Object valorCentral) throws Exception {
         Object a;
         Field field = Utilidades_Generales.ObtencionDeAtributo(clazz, atributo);
@@ -331,6 +344,7 @@ public class ListaEnlazada<E> extends AbstractSequentialList<E> implements List<
         }
     }
 
+    @SuppressWarnings("rawtypes")
     private void busquedaDeObjetos(ListaEnlazada<E> resultado, Integer bajo, Integer alto, E[] arreglo, Class clazz, String atributo, Object dato) throws Exception {
         Boolean band;
         for (int aux = bajo; bajo < alto + 1; bajo++) {
@@ -340,6 +354,7 @@ public class ListaEnlazada<E> extends AbstractSequentialList<E> implements List<
         }
     }
 
+    @SuppressWarnings("rawtypes")
     private Boolean EvaluacionBusquedaObjeto(E aux, Object dato, Class clazz, String atributo) throws Exception {
         Field field = Utilidades_Generales.ObtencionDeAtributo(clazz, atributo);
         if (field == null) {
@@ -465,6 +480,7 @@ public class ListaEnlazada<E> extends AbstractSequentialList<E> implements List<
         return elemento;
     }
 
+    @Override
     public E getFirst() {
         final Nodo<E> f = inicio;
         if (f == null) {
@@ -473,6 +489,7 @@ public class ListaEnlazada<E> extends AbstractSequentialList<E> implements List<
         return f.item;
     }
 
+    @Override
     public E getLast() {
         final Nodo<E> l = ultimo;
         if (l == null) {
@@ -481,6 +498,7 @@ public class ListaEnlazada<E> extends AbstractSequentialList<E> implements List<
         return l.item;
     }
 
+    @Override
     public E removeFirst() {
         final Nodo<E> f = inicio;
         if (f == null) {
@@ -489,6 +507,7 @@ public class ListaEnlazada<E> extends AbstractSequentialList<E> implements List<
         return DesvincularPrimero(f);
     }
 
+    @Override
     public E removeLast() {
         final Nodo<E> l = ultimo;
         if (l == null) {
@@ -497,27 +516,33 @@ public class ListaEnlazada<E> extends AbstractSequentialList<E> implements List<
         return DesvincularUltimo(l);
     }
 
+    @Override
     public void addFirst(E e) {
         listarPrimero(e);
     }
 
+    @Override
     public void addLast(E e) {
         enlazarlista(e);
     }
 
+    @Override
     public boolean contains(Object o) {
         return indexOf(o) != -1;
     }
 
+    @Override
     public int size() {
         return Tamano;
     }
 
+    @Override
     public boolean add(E e) {
         enlazarlista(e);
         return true;
     }
 
+    @Override
     public boolean remove(Object o) {
         if (o == null) {
             for (Nodo<E> x = inicio; x != null; x = x.siguiente) {
@@ -538,10 +563,13 @@ public class ListaEnlazada<E> extends AbstractSequentialList<E> implements List<
         return false;
     }
 
+    @Override
     public boolean addAll(Collection<? extends E> c) {
         return addAll(Tamano, c);
     }
 
+    @SuppressWarnings("unchecked")
+    @Override
     public boolean addAll(int Indice, Collection<? extends E> c) {
         revisarPocicionIndice(Indice);
         Object[] a = c.toArray();
@@ -581,11 +609,13 @@ public class ListaEnlazada<E> extends AbstractSequentialList<E> implements List<
         return true;
     }
 
+    @Override
     public E get(int indice) {
         revisarElemento(indice);
         return node(indice).item;
     }
 
+    @Override
     public E set(int indice, E elemento) {
         revisarElemento(indice);
         Nodo<E> x = node(indice);
@@ -719,6 +749,7 @@ public class ListaEnlazada<E> extends AbstractSequentialList<E> implements List<
         return false;
     }
 
+    @Override
     public ListIterator<E> listIterator(int index) {
         revisarPocicionIndice(index);
         return new ListaIterador(index);
@@ -736,10 +767,12 @@ public class ListaEnlazada<E> extends AbstractSequentialList<E> implements List<
             indicesiguiente = index;
         }
 
+        @Override
         public boolean hasNext() {
             return indicesiguiente < Tamano;
         }
 
+        @Override
         public E next() {
             checkForComodification();
             if (!hasNext()) {
@@ -751,10 +784,12 @@ public class ListaEnlazada<E> extends AbstractSequentialList<E> implements List<
             return ultimoretorno.item;
         }
 
+        @Override
         public boolean hasPrevious() {
             return indicesiguiente > 0;
         }
 
+        @Override
         public E previous() {
             checkForComodification();
             if (!hasPrevious()) {
@@ -765,14 +800,17 @@ public class ListaEnlazada<E> extends AbstractSequentialList<E> implements List<
             return ultimoretorno.item;
         }
 
+        @Override
         public int nextIndex() {
             return indicesiguiente;
         }
 
+        @Override
         public int previousIndex() {
             return indicesiguiente - 1;
         }
 
+        @Override
         public void remove() {
             checkForComodification();
             if (ultimoretorno == null) {
@@ -790,6 +828,7 @@ public class ListaEnlazada<E> extends AbstractSequentialList<E> implements List<
             sumafinal++;
         }
 
+        @Override
         public void set(E e) {
             if (ultimoretorno == null) {
                 throw new IllegalStateException();
@@ -798,6 +837,7 @@ public class ListaEnlazada<E> extends AbstractSequentialList<E> implements List<
             ultimoretorno.item = e;
         }
 
+        @Override
         public void add(E e) {
             checkForComodification();
             ultimoretorno = null;
@@ -811,6 +851,7 @@ public class ListaEnlazada<E> extends AbstractSequentialList<E> implements List<
             sumafinal++;
         }
 
+        @Override
         public void forEachRemaining(Consumer<? super E> action) {
             Objects.requireNonNull(action);
             while (modCount == sumafinal && indicesiguiente < Tamano) {
@@ -850,14 +891,17 @@ public class ListaEnlazada<E> extends AbstractSequentialList<E> implements List<
 
         private final ListaIterador itr = new ListaIterador(size());
 
+        @Override
         public boolean hasNext() {
             return itr.hasPrevious();
         }
 
+        @Override
         public E next() {
             return itr.previous();
         }
 
+        @Override
         public void remove() {
             itr.remove();
         }
@@ -873,6 +917,7 @@ public class ListaEnlazada<E> extends AbstractSequentialList<E> implements List<
         }
     }
 
+    @Override
     public Object[] toArray() {
         Object[] result = new Object[Tamano];
         int i = 0;
@@ -882,6 +927,7 @@ public class ListaEnlazada<E> extends AbstractSequentialList<E> implements List<
         return result;
     }
 
+    @Override
     @SuppressWarnings("unchecked")
     public <T> T[] toArray(T[] a) {
         if (a.length < Tamano) {

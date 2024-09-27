@@ -9,7 +9,7 @@ import Utilidades.Utilidades;
 public class Medico extends Persona {
 
     private Especialidad especidalidad;
-    private CitaMedica[] citasAgendadas = new CitaMedica[100];
+    private final CitaMedica[] citasAgendadas = new CitaMedica[100];
 
     public CitaMedica[] getCitasAgendadas() {
         return citasAgendadas;

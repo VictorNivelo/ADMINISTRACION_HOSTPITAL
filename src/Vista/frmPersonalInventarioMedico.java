@@ -91,6 +91,7 @@ public class frmPersonalInventarioMedico extends javax.swing.JFrame {
         return Existe;
     }
 
+    @SuppressWarnings("unused")
     private void VaciarI() {
         int cantidadfilas = tblMedicamentos.getRowCount();
         ImageIcon advertencia = new ImageIcon("src/RecursosGraficos/JoptionPane/warning.png");

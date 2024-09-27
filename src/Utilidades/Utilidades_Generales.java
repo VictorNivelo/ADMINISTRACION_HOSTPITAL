@@ -12,14 +12,17 @@ import java.lang.reflect.Field;
  */
 public class Utilidades_Generales {
 
+    @SuppressWarnings("rawtypes")
     public static Boolean isString(Class clase) {
         return clase.getSimpleName().equalsIgnoreCase("String");
     }
 
+    @SuppressWarnings("rawtypes")
     public static Boolean isPrimitive(Class clase) {
         return clase.isPrimitive();
     }
 
+    @SuppressWarnings("rawtypes")
     public static Field ObtencionDeAtributo(Class clase, String nombre) {
         Field atributo = null;
         for (Field aux : clase.getDeclaredFields()) {
@@ -31,6 +34,7 @@ public class Utilidades_Generales {
         return atributo;
     }
 
+    @SuppressWarnings("unused")
     private final Integer LIMITE_DATOS = 100;
 
     public static <T> boolean contains(final T[] array, final T v) {
@@ -64,6 +68,7 @@ public class Utilidades_Generales {
     }
 
     //cargar el objeto
+    @SuppressWarnings("finally")
     public static int cargar(Object expresiones[]) {
         int counter = 0;
         try {
@@ -81,7 +86,7 @@ public class Utilidades_Generales {
                 counter += 1;
             }
         } 
-        catch (Exception e) {
+        catch (IOException e) {
             System.out.println("No se encontraron objetos guardados en el json!");
         } 
         finally {

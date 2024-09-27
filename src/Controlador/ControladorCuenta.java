@@ -4,9 +4,9 @@ import Modelo.Cuenta;
 import Modelo.Pbkdf2;
 import Modelo.Rol;
 import Modelo.Roles;
-import Utilidades.Utilidades;
 import Utilidades.UtilidadesJSON;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 /**
  *
@@ -16,9 +16,9 @@ public class ControladorCuenta {
 
     private final Integer MAXIMO_CUENTAS = 100;
     private Cuenta cuentas[] = new Cuenta[MAXIMO_CUENTAS];
-    private Cuenta cuentasMedicos[] = new Cuenta[MAXIMO_CUENTAS];
-    private Cuenta cuentasEnfermeros[] = new Cuenta[MAXIMO_CUENTAS];
-    private Cuenta cuentasSuperAdmins[] = new Cuenta[MAXIMO_CUENTAS];
+    private final Cuenta cuentasMedicos[] = new Cuenta[MAXIMO_CUENTAS];
+    private final Cuenta cuentasEnfermeros[] = new Cuenta[MAXIMO_CUENTAS];
+    private final Cuenta cuentasSuperAdmins[] = new Cuenta[MAXIMO_CUENTAS];
     private Integer ocupados = 0;
     private byte[] salt;
 
@@ -84,8 +84,8 @@ public class ControladorCuenta {
                 salt = Pbkdf2.generateSalt();
                 this.guardar();
             } 
-            catch (Exception e) {
-                e.printStackTrace();
+            catch (IOException | NoSuchAlgorithmException e) {
+                
             }
         }
         return salt;
@@ -118,15 +118,15 @@ public class ControladorCuenta {
         }
         Rol nuevoRol = cuenta.getPersona().getRol();
         eliminarCuenta(cuenta.getPersona().getIdentificacion());
-        if (nuevoRol.getNombre() == Roles.Medico.getNombre()) {
+        if (nuevoRol.getNombre().equals(Roles.Medico.getNombre())) {
             Integer lastEmptyIndex = UtilidadesJSON.ultimoElementoNoVacio(cuentasMedicos);
             cuentasMedicos[lastEmptyIndex] = cuenta;
         } 
-        else if (nuevoRol.getNombre() == Roles.Enfermera.getNombre()) {
+        else if (nuevoRol.getNombre().equals(Roles.Enfermera.getNombre())) {
             Integer lastEmptyIndex = UtilidadesJSON.ultimoElementoNoVacio(cuentasEnfermeros);
             cuentasEnfermeros[lastEmptyIndex] = cuenta;
         }
-        else if (nuevoRol.getNombre() == Roles.SuperAdmin.getNombre()) {
+        else if (nuevoRol.getNombre().equals(Roles.SuperAdmin.getNombre())) {
             Integer lastEmptyIndex = UtilidadesJSON.ultimoElementoNoVacio(cuentasSuperAdmins);
             cuentasSuperAdmins[lastEmptyIndex] = cuenta;
         }
@@ -162,8 +162,8 @@ public class ControladorCuenta {
             }
             this.guardar();
         } 
-        catch (Exception ex) {
-            ex.printStackTrace();
+        catch (IOException ex) {
+            
         }
     }
 }

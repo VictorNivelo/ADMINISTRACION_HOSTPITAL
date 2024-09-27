@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.JComboBox;
 
 /**
@@ -22,6 +23,7 @@ public class UtilidadesJSON<T> {
     public static final Integer INDEX_ENFERMERA_ROLE = 2;
     public static final Integer INDEX_PACIENTE_ROLE = 3;
 
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     public static Object cargarJson(Class clazz, String nombreArchivo) {
         return new FileJSON(nombreArchivo).cargar(clazz);
     }
@@ -30,6 +32,7 @@ public class UtilidadesJSON<T> {
         return new FileJSON(nombreArchivo).guardar(controlador);
     }
 
+    @SuppressWarnings("resource")
     public static Boolean guardarArray(Object array[], String nombreArchivo) {
         try {
             Gson json = new Gson();
@@ -40,12 +43,12 @@ public class UtilidadesJSON<T> {
 
             return true;
         } 
-        catch (Exception e) {
-            e.printStackTrace();
+        catch (IOException e) {
             return false;
         }
     }
 
+    @SuppressWarnings("resource")
     public static <T> T cargarArray(String nombreArchivo, Class<T> clazz) {
         try {
             System.out.println("Cargando " + nombreArchivo + "...");
@@ -59,7 +62,7 @@ public class UtilidadesJSON<T> {
             }
             return json.fromJson(jsons.toString(), clazz);
         } 
-        catch (Exception e) {
+        catch (IOException e) {
             System.out.println("No se encontraron objetos guardados en el json!");
         }
         return null;
@@ -90,6 +93,7 @@ public class UtilidadesJSON<T> {
         return rolArray;
     }
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void rellenarCombo(JComboBox cmb, Object array[]) {
         cmb.removeAllItems();
         Integer size = ultimoElementoNoVacio(array);
