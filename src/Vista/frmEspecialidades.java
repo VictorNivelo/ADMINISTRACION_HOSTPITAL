@@ -2,7 +2,6 @@ package Vista;
 
 import Controlador.ControladorEspecialidades;
 import Modelo.Especialidad;
-import Utilidades.Utilidades;
 import Utilidades.UtilidadesJSON;
 import Vista.Tabla.ModeloTablaEspecialidad;
 import java.util.Arrays;

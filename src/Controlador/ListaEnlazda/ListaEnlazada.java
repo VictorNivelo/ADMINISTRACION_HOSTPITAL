@@ -587,7 +587,6 @@ public final class ListaEnlazada<E> extends AbstractSequentialList<E> implements
             previo = Exito.anterior;
         }
         for (Object o : a) {
-            @SuppressWarnings("Sin revisar")
             E e = (E) o;
             Nodo<E> nuevoNodo = new Nodo<>(previo, e, null);
             if (previo == null) {

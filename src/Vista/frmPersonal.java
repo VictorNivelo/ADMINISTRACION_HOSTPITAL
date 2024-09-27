@@ -9,7 +9,6 @@ import Modelo.Medico;
 import Modelo.Persona;
 import Modelo.Roles;
 import Modelo.Rol;
-import Utilidades.Utilidades;
 import Utilidades.UtilidadesJSON;
 import Vista.Tabla.ModeloTablaPersona;
 import java.awt.event.ItemEvent;
@@ -543,6 +542,7 @@ public class frmPersonal extends javax.swing.JFrame {
     private javax.swing.JButton btnRegresar;
     private javax.swing.JButton btnRegresarInicio;
     private javax.swing.JButton btnSalir;
+    @SuppressWarnings("unused")
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbxEspecialidades;
     private javax.swing.JComboBox<String> cbxPersona;

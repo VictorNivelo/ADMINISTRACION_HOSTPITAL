@@ -23,7 +23,7 @@ public class ControladorCuenta {
     private byte[] salt;
 
     public ControladorCuenta() {
-        
+
     }
 
     public void registrarUsuario(Cuenta nuevaCuenta) throws IOException {
@@ -64,7 +64,7 @@ public class ControladorCuenta {
             if (cuenta.getUsuario().equals(usuario)) {
                 try {
                     return cuenta.login(usuario, clave, salt);
-                }
+                } 
                 catch (Exception ex) {
                     System.out.println(ex);
                 }
@@ -85,7 +85,7 @@ public class ControladorCuenta {
                 this.guardar();
             } 
             catch (IOException | NoSuchAlgorithmException e) {
-                
+
             }
         }
         return salt;
@@ -112,7 +112,8 @@ public class ControladorCuenta {
     }
 
     public void actualizarRolCuenta(Cuenta cuenta) throws Exception {
-        Integer findInIndex = UtilidadesJSON.buscarCuentaLinealPorCedula(cuentas, cuenta.getPersona().getIdentificacion());
+        Integer findInIndex = UtilidadesJSON.buscarCuentaLinealPorCedula(cuentas,
+                cuenta.getPersona().getIdentificacion());
         if (findInIndex == -1) {
             throw new Exception(cuenta.toString() + " no encontrado");
         }
@@ -125,7 +126,7 @@ public class ControladorCuenta {
         else if (nuevoRol.getNombre().equals(Roles.Enfermera.getNombre())) {
             Integer lastEmptyIndex = UtilidadesJSON.ultimoElementoNoVacio(cuentasEnfermeros);
             cuentasEnfermeros[lastEmptyIndex] = cuenta;
-        }
+        } 
         else if (nuevoRol.getNombre().equals(Roles.SuperAdmin.getNombre())) {
             Integer lastEmptyIndex = UtilidadesJSON.ultimoElementoNoVacio(cuentasSuperAdmins);
             cuentasSuperAdmins[lastEmptyIndex] = cuenta;
@@ -161,9 +162,8 @@ public class ControladorCuenta {
                 UtilidadesJSON.eliminarElemento(cuentasSuperAdmins, indexCuentasSuperAdmin);
             }
             this.guardar();
-        } 
-        catch (IOException ex) {
-            
+        } catch (IOException ex) {
+
         }
     }
 }

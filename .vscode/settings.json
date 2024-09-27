@@ -1,7 +1,12 @@
 {
     "java.project.referencedLibraries": [
-        "lib/**/*.jar",
-        "Librerias/gson-2.8.2.jar",
-        "Librerias/iText-2.0.8.jar"
+        "Librerias\\gson-2.8.2.jar",
+        "Librerias\\iText-2.0.8.jar",
+        "c:\\Users\\Victor\\Documents\\Proyectos\\ADMINISTRACION_HOSTPITAL\\Librerias\\iText-2.0.8.jar",
+        "c:\\Users\\Victor\\Documents\\Proyectos\\ADMINISTRACION_HOSTPITAL\\Librerias\\gson-2.8.2.jar"
+    ],
+    "java.format.settings.url": ".vscode/java-formatter.xml",
+    "java.project.sourcePaths": [
+        "src"
     ]
 }

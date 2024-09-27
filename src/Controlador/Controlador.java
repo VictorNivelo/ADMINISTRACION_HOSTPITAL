@@ -1,14 +1,14 @@
 package Controlador;
 
-import javax.swing.JTable;
 import Vista.frmUsuarioConsultarCita;
+import javax.swing.JTable;
 
 /**
  *
  * @author Victor
  */
-public class Controlador extends frmUsuarioConsultarCita{
-    
+public class Controlador extends frmUsuarioConsultarCita {
+
     public int busquedaLineal(int[] arr, int elemento) {
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] == elemento) {
@@ -17,7 +17,7 @@ public class Controlador extends frmUsuarioConsultarCita{
         }
         return -1;
     }
-    
+
     @Override
     public boolean ExisteEnLista(JTable tblCitasSinAtender, String cedula, int col) {
         boolean Existe = false;
@@ -28,7 +28,7 @@ public class Controlador extends frmUsuarioConsultarCita{
         }
         return Existe;
     }
-    
+
     public static void quickSort(int[] array, int inicio, int fin) {
         if (inicio < fin) {
             int pivot = partition(array, inicio, fin);
@@ -36,7 +36,7 @@ public class Controlador extends frmUsuarioConsultarCita{
             quickSort(array, pivot + 1, fin);
         }
     }
-    
+
     private static int partition(int[] array, int inicio, int fin) {
         int pivot = array[fin];
         int i = inicio - 1;
